@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Acerca de Luca Terranova</title>
+  <style>
+    :root{--accent:#ff6b6b;--bg:#0f1724;--card:#0b1220;--glass:rgba(255,255,255,0.04)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,Segoe UI,Roboto,Arial;color:#e6eef8;background:linear-gradient(135deg,#071629 0%, #0b1e2f 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+    .card{width:960px;max-width:100%;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:18px;padding:28px;display:grid;grid-template-columns:220px 1fr;gap:22px;box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+    .avatar{width:180px;height:180px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:linear-gradient(45deg,var(--accent),#ffd37a);color:#091018;font-weight:700;font-size:28px;position:relative;overflow:hidden}
+    .avatar::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.18), transparent 20%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.06), transparent 20%);opacity:0.9;animation:float 6s ease-in-out infinite}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+    h1{margin:0 0 6px 0;font-size:20px}
+    p.role{margin:0 0 12px 0;color:#cfe6ff;font-size:13px}
+    .meta{font-size:14px;color:#bcd7ff}
+    .content{padding:6px 0}
+
+    form{display:flex;flex-direction:column;gap:10px;max-width:520px}
+    input[type="text"],input[type="email"],textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 12px;border-radius:10px;color:#e6eef8;outline:none}
+    textarea{min-height:110px;resize:vertical}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:none;background:var(--accent);color:white;font-weight:600;cursor:pointer}
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+
+    .title-row{display:flex;align-items:center;gap:12px}
+    .underline{height:3px;background:linear-gradient(90deg,var(--accent),#ffd37a);width:60px;border-radius:3px;transform-origin:left;animation:reveal 1.4s ease forwards}
+    @keyframes reveal{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+
+    .thanks{opacity:0;transform:translateY(8px);transition:all .45s ease;color:#cdebe8}
+    .thanks.show{opacity:1;transform:translateY(0)}
+
+    footer{grid-column:1/-1;margin-top:8px;color:#98b9d9;font-size:13px;text-align:right}
+
+    @media (max-width:720px){.card{grid-template-columns:1fr;gap:14px}.avatar{margin:0 auto}}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div>
+      <div class="avatar">LT</div>
+      <div style="margin-top:12px">
+        <h1>Luca Terranova</h1>
+        <p class="role">Estudiante de la EPET N°14 · Especialidad Electrónica</p>
+        <div class="meta">📍 Neuquén, Argentina · 📧 <a href="mailto:luca.valentino.terranova@epet14.edu.ar" style="color:#dff6ff;text-decoration:none">luca.valentino.terranova@epet14.edu.ar</a></div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="title-row">
+        <div style="flex:1">
+          <h2 style="margin:0">Acerca de mí</h2>
+          <div class="underline"></div>
+        </div>
+      </div>
+
+      <p style="color:#cfe6ff">Soy estudiante de la EPET N°14, especialidad electrónica, apasionado por el deporte y la tecnología. Me gusta modelar en 3D e imprimir, y también disfruto mucho de la música. Toco varios instrumentos como la guitarra, la batería y el piano.</p>
+
+      <h3 style="margin-top:14px;margin-bottom:8px">Contacto</h3>
+
+      <form id="contactForm" onsubmit="return submitForm(event)">
+        <input id="name" type="text" placeholder="Tu nombre" required>
+        <input id="email" type="email" placeholder="Tu email" required>
+        <textarea id="message" placeholder="Tu mensaje" required></textarea>
+        <div style="display:flex;gap:10px">
+          <button class="btn" type="submit">Enviar</button>
+          <button class="btn secondary" type="button" onclick="fillDemo()">Autocompletar demo</button>
+        </div>
+        <div id="thanks" class="thanks">✅ Gracias — tu mensaje ha sido procesado localmente (sin envío real).</div>
+      </form>
+
+      <footer>Diseño sencillo · HTML/CSS/JS · Animación CSS incluida</footer>
+    </div>
+  </div>
+
+  <script>
+    function submitForm(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      if(!name||!email||!msg){alert('Completa todos los campos.');return false}
+      const t = document.getElementById('thanks');
+      t.classList.add('show');
+      return false;
+    }
+    function fillDemo(){
+      document.getElementById('name').value='Juan Pérez';
+      document.getElementById('email').value='juan@example.com';
+      document.getElementById('message').value='¡Hola Luca! Me interesa tu perfil.';
+    }
+  </script>
+</body>
+</html>
